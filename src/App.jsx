@@ -104,7 +104,10 @@ function Typewriter({ sketchMode }) {
    NAVBAR
 ========================================================= */
 
-function Navbar({ sketchMode, toggleMode }) {
+function Navbar({
+  sketchMode,
+  toggleMode
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => {
@@ -112,7 +115,11 @@ function Navbar({ sketchMode, toggleMode }) {
   };
 
   return (
-    <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
+    <nav
+      className={`navbar ${
+        sketchMode ? "navbar-sketch" : "navbar-nightmare"
+      }`}
+    >
 
       {/* LOGO */}
       <div className="logo">
@@ -129,55 +136,76 @@ function Navbar({ sketchMode, toggleMode }) {
       {/* DESKTOP LINKS */}
       <div className="nav-links">
 
-        <a className="magnetic" href="#home">HOME</a>
+        <a href="#home">
+          HOME
+        </a>
 
-        <a className="magnetic" href="#about">ABOUT</a>
+        <a href="#about">
+          ABOUT
+        </a>
 
-        <a className="magnetic" href="#skills">SKILLS</a>
+        <a href="#skills">
+          SKILLS
+        </a>
 
-        <a className="magnetic" href="#projects">PROJECTS</a>
+        <a href="#projects">
+          PROJECTS
+        </a>
 
-        <a className="magnetic" href="#contact">CONTACT</a>
+        <a href="#contact">
+          CONTACT
+        </a>
 
       </div>
 
 
-      {/* DESKTOP MODE BUTTON */}
+      {/* DESKTOP / MODE BUTTON */}
       <button
         className="mode-button"
         onClick={toggleMode}
         aria-label="Toggle portfolio mode"
       >
+
         <span className="mode-icon">
           {sketchMode ? "✏" : "◉"}
         </span>
 
         <span className="mode-name">
-          {sketchMode ? "SKETCH" : "NIGHTMARE"}
+          {sketchMode
+            ? "SKETCH"
+            : "NIGHTMARE"}
         </span>
 
         <span className="mode-status" />
+
       </button>
 
 
       {/* MOBILE MENU BUTTON */}
       <button
-        className={`menu-toggle ${
-          menuOpen ? "active" : ""
+        className={`mobile-menu-button ${
+          menuOpen ? "menu-open" : ""
         }`}
         onClick={() =>
-          setMenuOpen((prev) => !prev)
+          setMenuOpen((previous) => !previous)
         }
-        aria-label="Toggle navigation"
+        aria-label="Toggle navigation menu"
+        aria-expanded={menuOpen}
       >
-        <span />
-        <span />
-        <span />
+
+        <span></span>
+        <span></span>
+        <span></span>
+
       </button>
 
 
       {/* MOBILE MENU */}
-      <div className="mobile-menu">
+      <div
+        className={`mobile-nav-menu ${
+          menuOpen ? "mobile-nav-open" : ""
+        }`}
+      >
 
         <a href="#home" onClick={closeMenu}>
           HOME
@@ -199,21 +227,11 @@ function Navbar({ sketchMode, toggleMode }) {
           CONTACT
         </a>
 
-        <button
-          onClick={() => {
-            toggleMode();
-            closeMenu();
-          }}
-        >
-          {sketchMode ? "✏ SKETCH" : "◉ NIGHTMARE"}
-        </button>
-
       </div>
 
     </nav>
   );
 }
-
 /* =========================================================
    HERO
 ========================================================= */

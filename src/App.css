@@ -6271,3 +6271,465 @@ body {
   }
 
 }
+/* =========================================================
+   MOBILE NAVBAR FIX
+========================================================= */
+
+.mobile-menu-button {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid rgba(0, 255, 200, 0.25);
+  border-radius: 10px;
+
+  background: rgba(0, 255, 200, 0.05);
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  position: relative;
+  z-index: 1002;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.mobile-menu-button span {
+  width: 19px;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: #00ffc8;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* HOVER */
+
+.mobile-menu-button:hover {
+  background: rgba(0, 255, 200, 0.1);
+
+  border-color:
+    rgba(0, 255, 200, 0.55);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-nav-menu {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    z-index: 1000;
+
+    overflow: visible;
+
+    width: calc(100% - 28px);
+
+    min-height: 58px;
+
+    height: auto;
+
+    padding:
+      7px 8px 7px 15px;
+  }
+
+
+  /* Hide desktop navigation */
+
+  .navbar .nav-links {
+    display: none;
+  }
+
+
+  /* Show hamburger */
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+
+  /* Keep mode button visible */
+
+  .navbar .mode-button {
+    height: 40px;
+
+    padding:
+      0 10px;
+  }
+
+
+  .navbar .mode-name {
+    display: none;
+  }
+
+
+  /* =====================================================
+     MOBILE DROPDOWN
+  ===================================================== */
+
+  .mobile-nav-menu {
+
+    position: absolute;
+
+    top: calc(100% + 10px);
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    border-radius: 16px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+      translateY(-10px)
+      scale(0.98);
+
+    pointer-events: none;
+
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      visibility 0.3s ease;
+
+    z-index: 1001;
+
+    background:
+      rgba(3, 12, 18, 0.96);
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+      0 20px 50px
+      rgba(0, 0, 0, 0.35);
+  }
+
+
+  /* OPEN */
+
+  .mobile-nav-menu.mobile-nav-open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    pointer-events: auto;
+  }
+
+
+  /* MOBILE LINKS */
+
+  .mobile-nav-menu a {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 48px;
+
+    padding:
+      0 16px;
+
+    border-radius: 10px;
+
+    color:
+      rgba(235, 255, 251, 0.75);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+
+  .mobile-nav-menu a:hover,
+  .mobile-nav-menu a:active {
+
+    color: #ffffff;
+
+    background:
+      rgba(0, 255, 200, 0.08);
+
+    transform:
+      translateX(4px);
+  }
+
+
+  /* =====================================================
+     HAMBURGER → X
+  ===================================================== */
+
+  .mobile-menu-button.menu-open span:nth-child(1) {
+
+    transform:
+      translateY(7px)
+      rotate(45deg);
+  }
+
+  .mobile-menu-button.menu-open span:nth-child(2) {
+
+    opacity: 0;
+  }
+
+  .mobile-menu-button.menu-open span:nth-child(3) {
+
+    transform:
+      translateY(-7px)
+      rotate(-45deg);
+  }
+
+
+  /* =====================================================
+     SKETCH MODE MOBILE
+  ===================================================== */
+
+  .sketch-mode .mobile-menu-button {
+
+    border-color:
+      rgba(40, 38, 32, 0.25);
+
+    background:
+      rgba(255, 255, 255, 0.35);
+  }
+
+
+  .sketch-mode .mobile-menu-button span {
+
+    background: #24231f;
+  }
+
+
+  .sketch-mode .mobile-nav-menu {
+
+    background:
+      rgba(242, 238, 228, 0.97);
+
+    border-color:
+      rgba(40, 38, 32, 0.18);
+
+    box-shadow:
+      0 20px 50px
+      rgba(40, 38, 32, 0.15);
+  }
+
+
+  .sketch-mode .mobile-nav-menu a {
+
+    color:
+      rgba(36, 35, 31, 0.75);
+  }
+
+
+  .sketch-mode .mobile-nav-menu a:hover,
+  .sketch-mode .mobile-nav-menu a:active {
+
+    color: #24231f;
+
+    background:
+      rgba(40, 38, 32, 0.07);
+  }
+
+
+  /* MODE BUTTON IN SKETCH MODE */
+
+  .sketch-mode .mode-button {
+
+    color: #24231f;
+
+    border-color:
+      rgba(40, 38, 32, 0.2);
+
+    background:
+      rgba(255, 255, 255, 0.4);
+  }
+
+
+  .sketch-mode .mode-icon {
+
+    color: #24231f;
+
+    background:
+      rgba(40, 38, 32, 0.07);
+  }
+
+
+  .sketch-mode .mode-status {
+
+    background: #24231f;
+
+    box-shadow:
+      0 0 8px
+      rgba(36, 35, 31, 0.4);
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .navbar {
+
+    width:
+      calc(100% - 20px);
+
+    top: 10px;
+  }
+
+
+  .logo {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+  }
+
+
+  .logo-symbol {
+
+    width: 25px;
+    height: 25px;
+
+    font-size: 14px;
+  }
+
+
+  .mobile-menu-button {
+
+    width: 40px;
+    height: 40px;
+  }
+
+}
+/* =========================================================
+   MOBILE MODE BUTTON FIX
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* Keep logo from consuming all available space */
+  .navbar .logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* IMPORTANT: mode button must never disappear */
+  .navbar .mode-button {
+    display: flex !important;
+
+    flex: 0 0 40px;
+
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+
+    height: 40px;
+
+    padding: 0 !important;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    position: relative;
+    z-index: 1003;
+  }
+
+  /* Only show the mode icon on mobile */
+  .navbar .mode-button .mode-name {
+    display: none !important;
+  }
+
+  .navbar .mode-button .mode-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Keep hamburger visible */
+  .navbar .mobile-menu-button {
+    display: flex !important;
+
+    flex: 0 0 42px;
+
+    width: 42px;
+    min-width: 42px;
+
+    position: relative;
+    z-index: 1003;
+  }
+
+}
