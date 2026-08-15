@@ -1,0 +1,1457 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #020202;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================
+   MAIN WORLD
+========================= */
+
+.nightmare {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(100, 0, 0, 0.25),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(70, 0, 0, 0.2),
+      transparent 45%
+    ),
+    #020202;
+}
+
+/* =========================
+   RED GLOW
+========================= */
+
+.blood-glow {
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  left: 50%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(180, 0, 0, 0.12),
+    transparent 70%
+  );
+
+  filter: blur(30px);
+
+  pointer-events: none;
+}
+
+/* =========================
+   FOG
+========================= */
+
+.fog {
+  position: absolute;
+
+  width: 700px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  filter: blur(60px);
+
+  pointer-events: none;
+}
+
+.fog-one {
+  top: 20%;
+  left: -200px;
+
+  animation: fogMove 12s infinite alternate ease-in-out;
+}
+
+.fog-two {
+  bottom: 10%;
+  right: -200px;
+
+  animation: fogMove 15s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes fogMove {
+
+  from {
+    transform: translateX(-100px);
+  }
+
+  to {
+    transform: translateX(250px);
+  }
+
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  padding: 30px 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 10;
+}
+
+.logo {
+  font-size: 18px;
+
+  letter-spacing: 5px;
+
+  font-weight: bold;
+
+  color: #f1f1f1;
+
+  text-shadow:
+    0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+/* =========================================
+   MODE TOGGLE
+========================================= */
+
+.mode-toggle {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 145px;
+  height: 44px;
+
+  padding: 5px 16px 5px 8px;
+
+  border: 1px solid rgba(0, 255, 200, 0.25);
+
+  border-radius: 50px;
+
+  background: rgba(4, 15, 20, 0.65);
+
+  color: #dffff8;
+
+  backdrop-filter: blur(15px);
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    background 0.6s ease,
+    border 0.6s ease,
+    color 0.6s ease,
+    box-shadow 0.6s ease,
+    transform 0.3s ease;
+}
+
+.mode-toggle:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(0, 255, 200, 0.8);
+
+  box-shadow:
+    0 0 20px rgba(0, 255, 200, 0.15),
+    inset 0 0 20px rgba(0, 255, 200, 0.04);
+}
+.mode-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      #00ffc8,
+      #0077ff
+    );
+
+  color: #00100e;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  box-shadow:
+    0 0 12px rgba(0, 255, 200, 0.5);
+
+  transition:
+    transform 0.7s cubic-bezier(.68,-0.55,.27,1.55),
+    background 0.6s ease;
+}
+.mode-label {
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  white-space: nowrap;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.5s ease;
+}
+.mode-dot {
+  width: 5px;
+  height: 5px;
+
+  margin-left: auto;
+
+  border-radius: 50%;
+
+  background: #00ffc8;
+
+  box-shadow:
+    0 0 8px #00ffc8;
+
+  animation: modePulse 2s infinite;
+}
+
+@keyframes modePulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+}
+/* =========================================
+   SKETCH MODE
+========================================= */
+
+.sketch-mode {
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      #ffffff 0%,
+      #f4f0e6 55%,
+      #ded8ca 100%
+    );
+
+  color: #171717;
+
+  transition:
+    background 1.2s ease,
+    color 1.2s ease;
+}
+.sketch-mode .hero-name {
+  color: #171717;
+
+  text-shadow:
+    2px 2px 0 #ffffff,
+    -1px -1px 0 #777;
+
+  transition:
+    color 1s ease,
+    text-shadow 1s ease;
+}
+.sketch-mode .role {
+  color: #333;
+
+  transition: color 1s ease;
+}
+
+.sketch-mode .role span {
+  color: #777;
+
+  transition: color 1s ease;
+}
+.sketch-mode .intro-main {
+  color: #222;
+
+  text-shadow: none;
+
+  transition:
+    color 1s ease;
+}
+
+.sketch-mode .intro-main span {
+  color: #168c78;
+
+  text-shadow: none;
+}
+
+.sketch-mode .intro-sub {
+  color: #666;
+
+  transition:
+    color 1s ease;
+}
+.sketch-mode .enter-button {
+  border-color: #222;
+
+  color: #222;
+
+  box-shadow: none;
+
+  transition:
+    all 0.8s ease;
+}
+
+.sketch-mode .enter-button span {
+  color: #168c78;
+}
+
+.sketch-mode .enter-button:hover {
+  background: #222;
+
+  color: white;
+
+  box-shadow:
+    4px 4px 0 #168c78;
+}
+.sketch-mode .mode-toggle {
+  background: rgba(255, 255, 255, 0.75);
+
+  border-color: rgba(20, 20, 20, 0.2);
+
+  color: #222;
+
+  box-shadow:
+    3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sketch-mode .mode-icon {
+  transform: rotate(180deg);
+
+  background:
+    linear-gradient(
+      135deg,
+      #222,
+      #777
+    );
+
+  color: white;
+
+  box-shadow: none;
+}
+
+.sketch-mode .mode-dot {
+  background: #222;
+
+  box-shadow: none;
+}
+.mode-toggle::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 2px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 255, 200, 0.04),
+      transparent
+    );
+
+  pointer-events: none;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.sketch-mode .mode-toggle::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 0, 0, 0.04)
+    );
+}
+@media (max-width: 600px) {
+
+  .mode-toggle {
+    min-width: 110px;
+
+    height: 38px;
+
+    padding-right: 11px;
+
+    gap: 7px;
+  }
+
+  .mode-icon {
+    width: 27px;
+    height: 27px;
+
+    font-size: 12px;
+  }
+
+  .mode-label {
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+  }
+
+}
+
+.mode-toggle:hover {
+
+  border-color: rgba(255, 0, 0, 0.6);
+
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.2);
+
+  transform: translateY(-2px);
+
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+  position: relative;
+
+  z-index: 5;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 100px 20px;
+
+}
+
+/* =========================
+   EYEBROW
+========================= */
+
+.eyebrow {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+
+  font-size: 9px;
+
+  letter-spacing: 5px;
+
+  color: #666;
+
+}
+
+.eyebrow span {
+
+  display: block;
+
+  width: 35px;
+
+  height: 1px;
+
+  background: #700000;
+
+  box-shadow:
+    0 0 8px rgba(255, 0, 0, 0.5);
+
+}
+
+.eyebrow span {
+
+  display: block;
+
+  width: 35px;
+
+  height: 1px;
+
+  background: #700000;
+
+  box-shadow:
+    0 0 8px rgba(255, 0, 0, 0.5);
+
+}
+
+/* =========================
+   NAME
+========================= */
+
+.hero h1 {
+
+  font-size: clamp(
+    90px,
+    17vw,
+    220px
+  );
+
+  line-height: 0.8;
+
+  letter-spacing: 20px;
+
+  font-weight: 800;
+
+  color: #f5f5f5;
+
+  text-shadow:
+
+    0 0 10px rgba(255, 0, 0, 0.4),
+
+    0 0 40px rgba(100, 0, 0, 0.4);
+
+  animation: nameReveal 1.5s ease forwards;
+
+}
+
+/* =========================
+   ROLE
+========================= */
+
+.role {
+
+  margin-top: 35px;
+
+  font-size: 18px;
+
+  letter-spacing: 7px;
+
+  color: #ddd;
+
+}
+
+.role span {
+
+  color: #a00000;
+
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+
+  max-width: 520px;
+
+  margin-top: 25px;
+
+  line-height: 1.8;
+
+  font-size: 15px;
+
+  color: #777;
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.enter-button {
+
+  margin-top: 35px;
+
+  padding: 16px 32px;
+
+  background: transparent;
+
+  border: 1px solid #8b0000;
+
+  color: #eee;
+
+  letter-spacing: 3px;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: all 0.4s ease;
+
+}
+
+.enter-button span {
+
+  color: #ff2020;
+
+  margin-left: 10px;
+
+}
+
+.enter-button:hover {
+
+  background: #8b0000;
+
+  box-shadow:
+
+    0 0 20px rgba(255, 0, 0, 0.4),
+
+    0 0 60px rgba(100, 0, 0, 0.3);
+
+  transform: translateY(-4px);
+
+}
+
+/* =========================
+   SCROLL
+========================= */
+
+.scroll-indicator {
+
+  position: absolute;
+
+  bottom: 30px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 10;
+
+  color: #555;
+
+  font-size: 9px;
+
+  letter-spacing: 4px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+.scroll-indicator span {
+
+  width: 1px;
+
+  height: 35px;
+
+  background: #700000;
+
+  animation: scrollPulse 2s infinite;
+
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes nameReveal {
+
+  from {
+
+    opacity: 0;
+
+    transform: scale(1.15);
+
+    filter: blur(15px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    filter: blur(0);
+
+  }
+
+}
+
+@keyframes fadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+
+    opacity: 0.2;
+
+    height: 20px;
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+    height: 40px;
+
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+
+    padding: 20px;
+
+  }
+
+  .hero h1 {
+
+  font-size: clamp(
+    75px,
+    13vw,
+    170px
+  );
+
+  line-height: 0.85;
+
+  letter-spacing: 15px;
+
+  font-weight: 800;
+
+  color: #f5f5f5;
+
+  position: relative;
+
+  z-index: 6;
+
+  text-shadow:
+
+    0 0 10px rgba(255, 0, 0, 0.4),
+
+    0 0 35px rgba(100, 0, 0, 0.45);
+
+  animation: nameReveal 1.5s ease forwards;
+
+}
+
+ .role {
+
+  margin-top: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  letter-spacing: 6px;
+
+  color: #d4d4d4;
+
+}
+
+.role span {
+
+  color: #8b0000;
+
+  font-size: 18px;
+
+  letter-spacing: 0;
+
+}
+
+ .intro {
+  width: min(650px, 90vw);
+
+  margin: 28px auto 0;
+
+  text-align: center;
+
+  position: relative;
+
+  z-index: 20;
+}
+
+.intro-main {
+  font-size: clamp(12px, 1.2vw, 16px);
+
+  line-height: 1.8;
+
+  letter-spacing: 3px;
+
+  font-weight: 600;
+
+  color: #d7d7d7;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
+.intro-main span {
+  color: #ff2424;
+
+  text-shadow:
+    0 0 10px rgba(255, 0, 0, 0.8),
+    0 0 25px rgba(255, 0, 0, 0.3);
+}
+
+.intro-sub {
+  width: min(520px, 90%);
+
+  margin: 14px auto 0;
+
+  text-align: center;
+
+  font-size: clamp(11px, 1vw, 14px);
+
+  line-height: 1.8;
+
+  letter-spacing: 1px;
+
+  color: #777;
+}
+
+}
+.nightmare-scene {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+.nightmare-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.nightmare-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 100px 20px;
+
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+
+  z-index: 20;
+
+  width: 100%;
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    padding: 100px 30px 60px;
+  }
+
+  /* =========================================
+   3D KETAN NAME
+========================================= */
+
+.hero-name {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: clamp(0px, 0.8vw, 12px);
+
+  perspective: 1000px;
+
+  transform-style: preserve-3d;
+
+  font-size: clamp(80px, 13vw, 180px);
+
+  line-height: 0.85;
+
+  letter-spacing: 5px;
+
+  font-weight: 900;
+
+  color: #f5f5f5;
+
+  position: relative;
+
+  z-index: 20;
+
+  margin: 0;
+
+  text-shadow:
+    0 0 10px rgba(255, 0, 0, 0.5),
+    0 0 35px rgba(120, 0, 0, 0.5);
+}
+
+  .role {
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+
+  .intro {
+    width: min(600px, 90vw);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 100svh;
+
+    padding: 100px 20px 50px;
+
+    overflow: hidden;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+  }
+
+  .eyebrow span {
+    width: 20px;
+  }
+
+  .hero-name {
+    color: #eaffff;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 220, 0.25),
+        0 0 30px rgba(0, 180, 255, 0.2);
+}
+
+  .role {
+    margin-top: 22px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+  }
+
+  .role span {
+    font-size: 14px;
+  }
+
+  .intro {
+    width: 100%;
+
+    max-width: 350px;
+
+    margin: 22px auto 0;
+  }
+
+  .intro-main {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    line-height: 1.9;
+  }
+
+  .intro-sub {
+    max-width: 300px;
+
+    margin: 12px auto 0;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+    letter-spacing: 0.5px;
+  }
+
+  .enter-button {
+    margin-top: 28px;
+
+    padding: 14px 25px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+  }
+
+  .nightmare-scene {
+    opacity: 0.65;
+  }
+
+}
+.hero-name span {
+  display: inline-block;
+
+  transform-style: preserve-3d;
+
+  animation: letterFloat 4s ease-in-out infinite;
+
+  transition:
+    transform 0.4s ease,
+    color 0.4s ease;
+
+  cursor: default;
+}
+.hero-name span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.hero-name span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.hero-name span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.hero-name span:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.hero-name span:nth-child(5) {
+  animation-delay: 0.6s;
+}
+@keyframes letterFloat {
+
+  0% {
+    transform:
+      translateY(0)
+      rotateX(0deg)
+      rotateY(0deg);
+
+    text-shadow:
+      0 0 10px rgba(255, 0, 0, 0.4),
+      0 0 30px rgba(120, 0, 0, 0.4);
+  }
+
+  25% {
+    transform:
+      translateY(-8px)
+      rotateX(8deg)
+      rotateY(-8deg);
+
+    text-shadow:
+      0 0 15px rgba(255, 0, 0, 0.7),
+      0 0 45px rgba(255, 0, 0, 0.3);
+  }
+
+  50% {
+    transform:
+      translateY(0)
+      rotateX(0deg)
+      rotateY(8deg);
+  }
+
+  75% {
+    transform:
+      translateY(8px)
+      rotateX(-8deg)
+      rotateY(-5deg);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotateX(0deg)
+      rotateY(0deg);
+  }
+
+}
+.hero-name span:hover {
+    color: #00ffc8;
+
+    text-shadow:
+        0 0 10px #00ffc8,
+        0 0 30px #00bfff,
+        0 0 70px rgba(0, 255, 200, 0.5);
+}
+.typewriter {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border-right: 2px solid #ff2020;
+
+  width: 0;
+
+  animation:
+    typing 3s steps(40, end) forwards,
+    blinkCursor 0.7s step-end infinite;
+}
+
+@keyframes typing {
+
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+
+}
+
+@keyframes blinkCursor {
+
+  50% {
+    border-color: transparent;
+  }
+
+}
+@media (max-width: 600px) {
+
+  .typewriter {
+    white-space: normal;
+
+    width: 100%;
+
+    border-right: none;
+
+    animation: none;
+  }
+
+}
+/* =========================================
+   FINAL HERO BIO FIX
+========================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 20;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* ---------- BIO CONTAINER ---------- */
+
+.intro {
+  position: relative;
+
+  width: 100% !important;
+  max-width: 700px !important;
+
+  margin: 30px auto 0 !important;
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center !important;
+
+  box-sizing: border-box;
+}
+
+/* ---------- MAIN BIO ---------- */
+
+.intro-main {
+  width: 100% !important;
+  max-width: 650px;
+
+  margin: 0 auto !important;
+
+  display: block;
+
+  text-align: center !important;
+
+  font-size: clamp(12px, 1.2vw, 16px);
+
+  line-height: 1.8;
+
+  letter-spacing: 3px;
+
+  font-weight: 600;
+
+  color: #d7d7d7;
+}
+
+.intro-main span {
+  color: #ff2020;
+
+  text-shadow:
+    0 0 8px rgba(255, 0, 0, 0.8),
+    0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+/* ---------- SECONDARY BIO ---------- */
+
+.intro-sub {
+  width: 100% !important;
+  max-width: 520px !important;
+
+  margin: 14px auto 0 !important;
+
+  text-align: center !important;
+
+  font-size: clamp(11px, 1vw, 14px);
+
+  line-height: 1.8;
+
+  letter-spacing: 1px;
+
+  color: #888;
+}
+
+/* ---------- ROLE ---------- */
+
+.role {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  text-align: center;
+}
+
+/* ---------- BUTTON ---------- */
+
+.enter-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 100svh;
+
+    padding: 90px 15px 50px;
+
+    box-sizing: border-box;
+  }
+
+  .hero-content {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 0;
+  }
+
+  .intro {
+    width: 100% !important;
+
+    max-width: 380px !important;
+
+    padding: 0 15px;
+
+    margin-top: 22px !important;
+  }
+
+  .intro-main {
+    width: 100% !important;
+
+    max-width: 350px;
+
+    font-size: 10px;
+
+    line-height: 1.9;
+
+    letter-spacing: 2px;
+
+    text-align: center !important;
+  }
+
+  .intro-sub {
+    width: 100% !important;
+
+    max-width: 320px !important;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+    letter-spacing: 0.5px;
+
+    text-align: center !important;
+  }
+
+  .role {
+    max-width: 350px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    gap: 7px;
+  }
+
+}
