@@ -1,20 +1,20 @@
 const Projects = [
   {
     number: "01",
-    title: "LOCALNIX AI",
+    title: "APEXROOF OS",
     description:
-      "An AI-powered platform for creating modern websites and digital experiences.",
+      "A lightweight, mobile-first operating system designed specifically for Residential Roofing, Restoration, and High-Ticket Trade Contractors..",
     tech: ["React", "Node.js", "AI", "Three.js"],
-    link: "#",
+    link: "https://apexroof-os.vercel.app/",
   },
 
   {
     number: "02",
-    title: "FARMERS WELFARE",
+    title: "UPI FraudGuard AI",
     description:
-      "A digital platform designed to connect farmers with welfare schemes, useful services, weather information and healthcare support.",
+      "An AI-powered solution for detecting and preventing UPI fraud in real-time.",
     tech: ["HTML", "CSS", "JavaScript", "Firebase"],
-    link: "#",
+    link: "https://upi-fraud-detection-flax-three.vercel.app/",
   },
 
   {
